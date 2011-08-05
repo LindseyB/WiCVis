@@ -119,6 +119,8 @@ void play() {
   
   if(millis() - start >= 5000 && selected == 33) {
     animating = false;
+    start = millis();
+    selected = 1;
   }
 }
 
