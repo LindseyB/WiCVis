@@ -52,7 +52,7 @@ void draw(){
   text("Women in Computing", 400, 100);
 
   // draw the line
-  stroke(#33CCFF);
+  stroke(#FF0000);
   smooth();
   strokeWeight(5.0);
   strokeCap(ROUND);
@@ -74,7 +74,8 @@ void mouseMoved(){
   if(mouseY > 290 && mouseY < 310){
     for(int i = 1; i <= 33; i = i+1){
       if (mouseX > (i*23.03 - 10) && mouseX < (i*23.03 + 10)){
-        fill(#33CCFF, 155);
+        fill(255);
+        stroke(0);
         ellipse(i*23.03, 300, 10, 10);
         selected = i;
       }
@@ -93,7 +94,7 @@ void drawFact() {
 
   if(selected != -1){
     // draw year
-    fill(#CC33CC);
+    fill(#FF0000);
     textAlign(CENTER);
     textFont(fontA, 10);
     text(years[selected-1], selected*23.03, 280);
