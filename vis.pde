@@ -84,8 +84,6 @@ void draw(){
     triangle(730, 530, 780, 555, 730, 580);
   }
 
-  //mouseMoved();
-
   drawSelectedDot();
   drawFact();
 }
