@@ -37,6 +37,12 @@ facts[30] = "Mary Lou Jepsen becomes the founder and chief technology officer of
 facts[31] = "Frances E. Allen becomes the first female recipient of the ACM's Turing Award.";
 facts[32] = "Barbara H. Liskov wins the Turing prize.";
 
+PImage imgs = new PImage[33];
+
+for(int i=0; i<33; i++){
+  imgs[i] = loadImage("images/" + i + ".jpg");
+}
+
 void setup(){  
   size(800,600);
   background(255); 
@@ -93,6 +99,9 @@ void drawFact() {
   fill(0);
 
   if(selected != -1){
+    // draw image
+    image(imgs[selected-1], 90, 400);
+
     // draw year
     fill(#FF0000);
     textAlign(CENTER);
