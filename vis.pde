@@ -1,4 +1,4 @@
-int selected = -1;
+int selected = 1;
 String facts = new String[33];
 String years = {"1842", "1893", "1926", "1942", "1943", "1946", "1949", "1961", "1962", "1965", "1965", "1972", "1973", "1978", "1979", "1980", "1983", "1984", "1984", "1985", "1985", "1986", "1988", "1993", "1993", "1994", "1996", "1997", "2001", "2004", "2005", "2006", "2008"};
 
@@ -39,6 +39,9 @@ facts[32] = "Barbara H. Liskov wins the Turing prize.";
 
 PImage imgs = new PImage[33];
 
+float start = millis();
+boolean animating = true;
+
 for(int i=0; i<33; i++){
   imgs[i] = loadImage("images/" + i + ".jpg");
 }
@@ -71,18 +74,23 @@ void draw(){
     ellipse(i*23.03, 300, 10, 10);
   }
 
-  // fill the selected dot
+  play();
+
   mouseMoved();
+
+  drawSelectedDot();
   drawFact();
 }
 
 void mouseMoved(){
+  if(animating) {
+    // drop out of here
+    return;  
+  }
+
   if(mouseY > 290 && mouseY < 310){
     for(int i = 1; i <= 33; i = i+1){
       if (mouseX > (i*23.03 - 10) && mouseX < (i*23.03 + 10)){
-        fill(255);
-        stroke(0);
-        ellipse(i*23.03, 300, 10, 10);
         selected = i;
       }
     }
@@ -91,7 +99,27 @@ void mouseMoved(){
   }
 }
 
+void play() {
+  if(millis() - start >= 5000 && selected < 33) {
+    selected = selected + 1;
+    start = millis();
+    return;
+  }
+  
+  if(millis() - start >= 5000 && selected == 33) {
+    animating = false;
+  }
+}
 
+void drawSelectedDot() {
+    if(selected == -1){
+      return;
+    }
+
+    fill(255);
+    stroke(0);
+    ellipse(selected*23.03, 300, 10, 10); 
+}
 
 void drawFact() {
   PFont fontA = loadFont("Arial");  
