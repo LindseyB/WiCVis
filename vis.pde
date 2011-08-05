@@ -40,7 +40,7 @@ facts[32] = "Barbara H. Liskov wins the Turing prize.";
 PImage imgs = new PImage[33];
 
 float start = millis();
-boolean animating = true;
+boolean animating = false;
 
 for(int i=0; i<33; i++){
   imgs[i] = loadImage("images/" + i + ".jpg");
@@ -74,16 +74,24 @@ void draw(){
     ellipse(i*23.03, 300, 10, 10);
   }
 
-  play();
+  // handle animation and play/stop buttons
+  stroke(255);
+  fill(#FF0000);
+  if(animating){
+    rect(730, 530, 50, 50);
+    play();
+  } else {
+    triangle(730, 530, 780, 555, 730, 580);
+  }
 
-  mouseMoved();
+  //mouseMoved();
 
   drawSelectedDot();
   drawFact();
 }
 
 void mouseMoved(){
-  if(animating) {
+  if(animating){
     // drop out of here
     return;  
   }
@@ -94,8 +102,13 @@ void mouseMoved(){
         selected = i;
       }
     }
-  } else {
-    selected = -1;
+  }
+}
+
+void mouseClicked(){
+  if(mouseX > 730 && mouseX < 780 && mouseY > 530 && mouseY < 580){
+    //switch states
+    animating = !animating;
   }
 }
 
