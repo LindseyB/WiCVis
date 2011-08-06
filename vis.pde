@@ -1,5 +1,9 @@
+int count = 34;             // number of people
+float spacing = 760/count;  // spacing between "nodes"
+
+
 int selected = 1;
-String facts = new String[34];
+String facts = new String[count];
 String years = {"1842", "1893", "1926", "1942", "1943", "1946", "1949", "1949", "1961", "1962", "1965", "1965", "1972", "1973", "1978", "1979", "1980", "1983", "1984", "1984", "1985", "1985", "1986", "1988", "1993", "1993", "1994", "1996", "1997", "2001", "2004", "2005", "2006", "2008"};
 
 // filling the facts array
@@ -38,12 +42,12 @@ facts[31] = "Mary Lou Jepsen becomes the founder and chief technology officer of
 facts[32] = "Frances E. Allen becomes the first female recipient of the ACM's Turing Award.";
 facts[33] = "Barbara H. Liskov wins the Turing prize.";
 
-PImage imgs = new PImage[34];
+PImage imgs = new PImage[count];
 
 float start = millis();
 boolean animating = false;
 
-for(int i=0; i<34; i++){
+for(int i=0; i<count; i++){
   imgs[i] = loadImage("images/" + i + ".jpg");
 }
 
@@ -70,9 +74,9 @@ void draw(){
 
   // draw the dots
   strokeWeight(2.0);
-  for(int i = 1; i <= 34; i = i+1){
+  for(int i = 1; i <= count; i = i+1){
     fill(255);
-    ellipse(i*22.35, 300, 10, 10);
+    ellipse(i*spacing, 300, 10, 10);
   }
 
   // handle animation and play/stop buttons
@@ -96,8 +100,8 @@ void mouseMoved(){
   }
 
   if(mouseY > 290 && mouseY < 310){
-    for(int i = 1; i <= 34; i = i+1){
-      if (mouseX > (i*22.35 - 10) && mouseX < (i*23.35+ 10)){
+    for(int i = 1; i <= count; i = i+1){
+      if (mouseX > (i*spacing - 10) && mouseX < (i*spacing+ 10)){
         selected = i;
       }
     }
@@ -112,13 +116,13 @@ void mouseClicked(){
 }
 
 void play() {
-  if(millis() - start >= 5000 && selected < 34) {
+  if(millis() - start >= 5000 && selected < count) {
     selected = selected + 1;
     start = millis();
     return;
   }
   
-  if(millis() - start >= 5000 && selected == 34) {
+  if(millis() - start >= 5000 && selected == count) {
     animating = false;
     start = millis();
     selected = 1;
@@ -132,7 +136,7 @@ void drawSelectedDot() {
 
     fill(255);
     stroke(0);
-    ellipse(selected*22.35, 300, 10, 10); 
+    ellipse(selected*spacing, 300, 10, 10); 
 }
 
 void drawFact() {
@@ -148,7 +152,7 @@ void drawFact() {
     fill(#FF0000);
     textAlign(CENTER);
     textFont(fontA, 10);
-    text(years[selected-1], selected*22.35, 280);
+    text(years[selected-1], selected*spacing, 280);
     
     // draw fact
     fill(0);
