@@ -50,7 +50,7 @@ facts[33] = "Barbara H. Liskov wins the Turing prize.";
 
 PImage imgs = new PImage[count];
 
-float start = millis();
+float start;
 boolean animating = false;
 
 for(int i=0; i<count; i++){
@@ -118,6 +118,7 @@ void mouseClicked(){
   if(mouseX > 730 && mouseX < 780 && mouseY > 530 && mouseY < 580){
     //switch states
     animating = !animating;
+    start = millis();
   }
 }
 
