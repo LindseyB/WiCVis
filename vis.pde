@@ -2,15 +2,15 @@
  * the extent permitted by applicable law. You can redistribute it
  * and/or modify it under the terms of the Do What The Fuck You Want
  * To Public License, Version 2, as published by Sam Hocevar. See
- * http://sam.zoy.org/wtfpl/COPYING for more details. */ 
+ * http://sam.zoy.org/wtfpl/COPYING for more details. */
 
-int count = 34;             // number of people
+int count = 38;             // number of people
 float spacing = 760/count;  // spacing between "nodes"
 
 
 int selected = 1;
 String facts = new String[count];
-String years = {"1842", "1893", "1926", "1942", "1943", "1946", "1949", "1949", "1961", "1962", "1965", "1965", "1972", "1973", "1978", "1979", "1980", "1983", "1984", "1984", "1985", "1985", "1986", "1988", "1993", "1993", "1994", "1996", "1997", "2001", "2004", "2005", "2006", "2008"};
+String years = {"1842", "1893", "1926", "1942", "1943", "1946", "1949", "1949", "1961", "1962", "1965", "1965", "1972", "1973", "1978", "1979", "1980", "1983", "1984", "1984", "1985", "1985", "1986", "1988", "1993", "1993", "1994", "1996", "1997", "2001", "2004", "2005", "2006", "2006", "2006", "2006", "2008", "2014"};
 
 // filling the facts array
 facts[0] = "Ada Lovelace translates documents for the Analytical Engine and along with the translation provides notes which contains the first algorithm.";
@@ -46,7 +46,11 @@ facts[29] = "Audrey Tang becomes the initiator and leader of the Pugs project.";
 facts[30] = "Jeri Ellsworth creates and designs the C64 Direct-to-TV, a single chip-implementation of the Commodore 64.";
 facts[31] = "Mary Lou Jepsen becomes the founder and chief technology officer of One Laptop Per Child (OLPC). She later becomes the founder of Pixel Qi.";
 facts[32] = "Frances E. Allen becomes the first female recipient of the ACM's Turing Award.";
-facts[33] = "Barbara H. Liskov wins the Turing prize.";
+facts[33] = "Maria Klawe becomes first woman President of the Harvey Mudd College since its founding in 1955";
+facts[34] = "Melanie Rieback programs the first virus to infect RFID devices."
+facts[35] = "Joanna Rutkowska presents Blue Pill, a rootkit based on x86 virtualization.";
+facts[36] = "Barbara H. Liskov wins the Turing prize.";
+facts[37] = "Kimberley Bolton becomes the first woman to win a Microsoft Apprentice of the Year award";
 
 PImage imgs = new PImage[count];
 
@@ -57,16 +61,16 @@ for(int i=0; i<count; i++){
   imgs[i] = loadImage("images/" + i + ".jpg");
 }
 
-void setup(){  
+void setup(){
   size(800,600);
-  background(255); 
-}  
-  
+  background(255);
+}
+
 void draw(){
   background(255);
 
   fill(0);
-  PFont fontA = loadFont("Arial Black");  
+  PFont fontA = loadFont("Arial Black");
   textFont(fontA, 50);
   textAlign(CENTER);
   text("Women in Computing", 400, 100);
@@ -102,7 +106,7 @@ void draw(){
 void mouseMoved(){
   if(animating){
     // drop out of here
-    return;  
+    return;
   }
 
   if(mouseY > 290 && mouseY < 310){
@@ -128,7 +132,7 @@ void play() {
     start = millis();
     return;
   }
-  
+
   if(millis() - start >= 5000 && selected == count) {
     animating = false;
     start = millis();
@@ -143,12 +147,12 @@ void drawSelectedDot() {
 
     fill(255);
     stroke(0);
-    ellipse(selected*spacing, 300, 10, 10); 
+    ellipse(selected*spacing, 300, 10, 10);
 }
 
 void drawFact() {
-  PFont fontA = loadFont("Arial");  
-  
+  PFont fontA = loadFont("Arial");
+
   fill(0);
 
   if(selected != -1){
@@ -160,7 +164,7 @@ void drawFact() {
     textAlign(CENTER);
     textFont(fontA, 10);
     text(years[selected-1], selected*spacing, 280);
-    
+
     // draw fact
     fill(0);
     textAlign(LEFT);
